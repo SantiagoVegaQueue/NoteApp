@@ -1,3 +1,5 @@
+import Database.DBHandler;
+import Models.Folder;
 import Views.Notes;
 
 import javax.swing.*;
@@ -10,6 +12,10 @@ public class Main {
             public void run() {
                 Notes v = new Notes();
                 v.setVisible(true);
+                System.out.println("Hola");
+                var db = new DBHandler();
+                db.createTable();
+                db.addFolder(new Folder(-1,"AAAAAAAAAHHHH"));
             }
         });
 
