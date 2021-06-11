@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import Models.*;
 
 public class DBHandler {
-    private String url = "jdbc:sqlite:notas.db";
+    private final String url = "jdbc:sqlite:notas.db";
 
     private static DBHandler instance = null;
 
@@ -59,16 +59,17 @@ public class DBHandler {
         }
     }
 
+    public final static int ORDER_BY_ID_ASC = 1, ORDER_BY_ID_DESC = 2,ORDER_BY_NAME = 3;
     public ArrayList<Folder> selectAllFolder(int orderBy ){
         String query = "SELECT * FROM folders";
         switch(orderBy) {
-            case 1:
+            case ORDER_BY_ID_ASC:
                 query = "SELECT * FROM folders ORDER BY id asc";
                 break;
-            case 2:
+            case ORDER_BY_ID_DESC:
                 query = "SELECT * FROM folders ORDER BY id desc";
                 break;
-            case 3:
+            case ORDER_BY_NAME:
                 query = "SELECT * FROM folders ORDER BY name asc";
                 break;
         }

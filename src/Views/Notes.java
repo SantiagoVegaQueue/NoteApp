@@ -1,5 +1,7 @@
 package Views;
 
+import Database.DBHandler;
+
 import javax.swing.*;
 import javax.swing.plaf.BorderUIResource;
 import java.awt.*;
@@ -33,8 +35,15 @@ public class Notes extends JFrame {
         textArea1.setWrapStyleWord(true);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
+        updateFolderList();
     }
 
     DefaultListCellRenderer renderer = (DefaultListCellRenderer) folderList.getCellRenderer();
 
+    private void updateFolderList(){
+        var db = DBHandler.getInstance();
+        db.createTable(); //Crea las tablas, si ya se crearon, no hace nada.
+        var folders = db.selectAllFolder(DBHandler.ORDER_BY_ID_ASC);//Me duelvelve un arraylist con las carpetas, como parametro le digo como ordenarlos
+        folderList.setListData(folders.toArray());//Muestro el array en el Jlist, no se xq pero hay que llamar a ".toArray" para q funcione
+    }
 }

@@ -47,4 +47,8 @@ public class Note {
     public void setIdFolder(int idFolder) {
         this.idFolder = idFolder;
     }
+
+    public String toString(){
+        return this.text;
+    }
 }
